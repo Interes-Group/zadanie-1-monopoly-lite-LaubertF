@@ -1,7 +1,13 @@
 package sk.stuba.fei.uim.oop;
 
+
+
+//import sk.stuba.fei.uim.oop.Game;
+
+
 public class Assignment1 {
     public static void main(String[] args) {
-        System.out.print("The floor is java");  
+        new Game();
+
     }
 }
