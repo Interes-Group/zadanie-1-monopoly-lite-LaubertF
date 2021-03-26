@@ -4,16 +4,17 @@ public class Player {
     private String name = "";
     private int balance = 15000;
     private int position = 0;
-    private int jail_time = 0;
+    private int jailTime = 0;
 
 
 
-    public int getJail_time() {
-        return jail_time;
+    
+    public void setJailTime(int jailTime) {
+        this.jailTime = jailTime;
     }
 
-    public void setJail_time(int jail_time) {
-        this.jail_time = jail_time;
+    public void decreaseJailTime() {
+        this.jailTime--;
     }
 
     public String getName() {
@@ -45,11 +46,12 @@ public class Player {
         this.position = position;
     }
 
-    public void reduceJail_time() {
-        this.jail_time -= jail_time;
-    }
 
     public void reduceBalance(int amount) {
         this.balance -= amount;
+    }
+
+    public int getJailTime() {
+        return jailTime;
     }
 }

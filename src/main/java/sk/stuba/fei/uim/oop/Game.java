@@ -48,8 +48,14 @@ public class Game {
             
             var board = new Board();
             int playerNumber = 0;
+           int chanceNumber = 0;
+            Chances chances = new Chances();
             while(players.size()>1){
                 Player playerPlaying = players.get(playerNumber);
+                if (playerPlaying.getJailTime() >0 ){
+                    playerPlaying.decreaseJailTime();
+                    break;
+                }
                 Random rand = new Random();
                 int diceNumber = rand.nextInt(6) + 1;
                 System.out.println("Hrac "+ playerPlaying.getName() + " hodil " + diceNumber);
@@ -71,11 +77,11 @@ public class Game {
                         break;
                     case "Policia":
                         System.out.println("Chytili ta ringle");
-                        playerPlaying.setJail_time(3);
+                        playerPlaying.setJailTime(3);
                         break;
                     case "Platba dane":
-                        if (playerPlaying.getBalance() > 3000000){
-                            playerPlaying.changeBalance(-3000000);
+                        if (playerPlaying.getBalance() > 5000){
+                            playerPlaying.changeBalance(-5000);
                             System.out.println("Platis dan 3000");
                         }else {
                             players.remove(playerPlaying);
@@ -85,6 +91,12 @@ public class Game {
                         break;
                     case "Sanca":
                         System.out.println("sancujes");
+                        playerPlaying.changeBalance(chances.getChanceCard(chanceNumber));
+                        chanceNumber++;
+                        if (chanceNumber > 4){
+                            chanceNumber = 0;
+                        }
+
                         break;
                     default:
                         Property currentProperty = (Property) currentTile;
