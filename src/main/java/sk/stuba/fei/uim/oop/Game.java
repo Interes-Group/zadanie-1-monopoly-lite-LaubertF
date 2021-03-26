@@ -2,8 +2,6 @@ package sk.stuba.fei.uim.oop;
 
 
 import java.util.LinkedList;
-//import java.util.ListIterator;
-//import java.io.Console;
 import java.util.Scanner;
 import java.util.Random;
 /**
@@ -40,18 +38,14 @@ public class Game {
                 System.out.println(players.get(i).getName());
             }
             System.out.println("Zaciatok hry");
-            
-            
 
-            
-            
-            
             var board = new Board();
             int playerNumber = 0;
            int chanceNumber = 0;
             Chances chances = new Chances();
             while(players.size()>1){
                 Player playerPlaying = players.get(playerNumber);
+                System.out.println("Na tahu je hrac "+ playerPlaying.getName());
                 if (playerPlaying.getJailTime() >0 ){
                     playerPlaying.decreaseJailTime();
                     break;
@@ -80,8 +74,8 @@ public class Game {
                         playerPlaying.setJailTime(3);
                         break;
                     case "Platba dane":
-                        if (playerPlaying.getBalance() > 5000){
-                            playerPlaying.changeBalance(-5000);
+                        if (playerPlaying.getBalance() > 500){
+                            playerPlaying.changeBalance(-500);
                             System.out.println("Platis dan 3000");
                         }else {
                             players.remove(playerPlaying);
@@ -103,13 +97,15 @@ public class Game {
                         if(currentProperty.getOwner() == null){
                             System.out.println("Chces kupit: "+ currentProperty.getName()+"? (zadaj Y pre kupu)");
                             String temp = scan.nextLine();
-                            if (temp == "Y"){
+                            System.out.println(temp);
+                            if (temp.charAt(0) == 'Y'){
                                 if (currentProperty.getPrice() > playerPlaying.getBalance()){
                                     System.out.println("Nemas na kupu peniaze :/");                                    
                                 }
                                 else{
                                     playerPlaying.changeBalance(-currentProperty.getPrice());
-                                    System.out.println("Gratulujem, stal si sa majitelom "+ currentProperty.name);  
+                                    System.out.println("Gratulujem, stal si sa majitelom "+ currentProperty.name);
+                                    currentProperty.setOwner(playerPlaying);  
                                 }
                             }
                         }else{
