@@ -97,7 +97,6 @@ public class Game {
                         if(currentProperty.getOwner() == null){
                             System.out.println("Chces kupit: "+ currentProperty.getName()+"? (zadaj Y pre kupu)");
                             String temp = scan.nextLine();
-                            System.out.println(temp);
                             if (temp.charAt(0) == 'Y'){
                                 if (currentProperty.getPrice() > playerPlaying.getBalance()){
                                     System.out.println("Nemas na kupu peniaze :/");                                    
@@ -111,7 +110,7 @@ public class Game {
                         }else{
                             if (playerPlaying.getBalance() > currentProperty.getFee()){
                                 playerPlaying.changeBalance(-currentProperty.getFee());
-                                System.out.print("Hrac " + playerPlaying.getName() + " plati stojne " + currentProperty.getFee() + " hracovi "+ currentProperty.getOwner().getName());
+                                System.out.println("Hrac " + playerPlaying.getName() + " plati stojne " + currentProperty.getFee() + " hracovi "+ currentProperty.getOwner().getName());
                             }else {
                                 currentProperty.getOwner().changeBalance(playerPlaying.getBalance());
                                 System.out.println("Hrac " + playerPlaying.getName() + " nema peniaze nastojne a prehrava.");
